@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { RedsocialEntity } from "../redsocial/redsocial.entity";
-import { MuseumEntity } from "../museum/museum.entity";
+import { FotoEntity } from "../foto/foto.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ImageEntity } from "../image/image.entity";
-import { ArtistEntity } from "../artist/artist.entity";
+import { AlbumEntity } from "../album/album.entity";
 
 @Entity()
 export class UsuarioEntity {
@@ -15,16 +14,12 @@ export class UsuarioEntity {
     @Column()
     telefono: number;
 
-    @ManyToOne(() => RedsocialEntity, redsocial => redsocial.artworks)
+    @ManyToOne(() => RedsocialEntity, redsocial => redsocial.usuarios)
     redsocial: RedsocialEntity;
 
-    @ManyToOne(() => ExhibitionEntity, exhibition => exhibition.artworks)
-    exhibition: ExhibitionEntity;
+    @OneToMany(() => FotoEntity, foto => foto.usuario)
+    fotos: FotoEntity[];
 
-    @OneToMany(() => ImageEntity, image => image.artwork)
-    images: ImageEntity[];
-
-    @ManyToOne(() => ArtistEntity, artist => artist.artworks)
-    artist: ArtistEntity;
+    @OneToMany(() => AlbumEntity, album => album.usuario)
+    albums: AlbumEntity[];
 }
-/* archivo: src/artwork/artwork.entity.ts */

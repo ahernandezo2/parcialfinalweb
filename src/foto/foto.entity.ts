@@ -24,6 +24,6 @@ export class FotoEntity {
     @ManyToOne(() => UsuarioEntity, usuario => usuario.fotos)
     usuario: UsuarioEntity;
 
-    @ManyToOne(() => AlbumEntity, album => album.artworks)
+    @ManyToOne(() => AlbumEntity, album => album.fotos)
     album: AlbumEntity;
 }
