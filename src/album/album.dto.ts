@@ -3,10 +3,6 @@ export class AlbumDto {
 
     @IsString()
     @IsNotEmpty()
-    readonly id: string;
-
-    @IsString()
-    @IsNotEmpty()
     readonly titulo: string;
     
     @IsString()

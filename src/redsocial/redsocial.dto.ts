@@ -1,5 +1,5 @@
 import {IsDate, IsNotEmpty, IsNumber, IsString, IsUrl} from 'class-validator';
-export class UsuarioDto {
+export class RedsocialDto {
 
     @IsString()
     @IsNotEmpty()

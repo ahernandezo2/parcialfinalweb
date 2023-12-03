@@ -1,10 +1,6 @@
 import {IsDate, IsNotEmpty, IsNumber, IsString, IsUrl} from 'class-validator';
 export class FotoDto {
 
-    @IsString()
-    @IsNotEmpty()
-    readonly id: string;
-
     @IsNumber()
     @IsNotEmpty()
     readonly ISO: number;
