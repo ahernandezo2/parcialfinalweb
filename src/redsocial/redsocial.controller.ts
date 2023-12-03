@@ -11,9 +11,9 @@ export class RedsocialController {
     constructor(private readonly redsocialService: RedsocialService) { }
 
     @Post()
-    async createRedsocial(@Body() redsocialDto: RedsocialDto) {
-        const redsocial: RedsocialEntity = plainToInstance(RedsocialEntity, redsocialDto);
-        return await this.redsocialService.createLibreria(redsocial);
+    async createLibreria(@Body() redSocialDto: RedsocialDto) {
+        const redSocial: RedsocialEntity = plainToInstance(RedsocialEntity, redSocialDto);
+        return await this.redsocialService.createLibreria(redSocial);
     }
 
 }

@@ -12,7 +12,7 @@ export class UsuarioEntity {
     @Column()
     nombre: string;
     @Column()
-    telefono: number;
+    telefono: string;
 
     @ManyToOne(() => RedsocialEntity, redsocial => redsocial.usuarios)
     redsocial: RedsocialEntity;

@@ -1,12 +1,13 @@
-import {IsDate, IsNotEmpty, IsNumber, IsString, IsUrl} from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString, IsUrl, Length } from 'class-validator';
 export class UsuarioDto {
 
     @IsString()
     @IsNotEmpty()
     readonly nombre: string;
 
-    @IsNumber()
     @IsNotEmpty()
-    readonly telefono: number;
+    @IsString()
+    @Length(10, 10)
+    readonly telefono: string;
 
 }

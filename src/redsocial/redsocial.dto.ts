@@ -1,12 +1,13 @@
-import {IsDate, IsNotEmpty, IsNumber, IsString, IsUrl} from 'class-validator';
+import { MinLength, IsNotEmpty, IsNumber, IsString, IsUrl } from 'class-validator';
 export class RedsocialDto {
 
     @IsString()
     @IsNotEmpty()
     readonly nombre: string;
 
-    @IsNumber()
     @IsNotEmpty()
-    readonly telefono: number;
+    @IsString()
+    @MinLength(11)
+    readonly slogan: string;
 
 }

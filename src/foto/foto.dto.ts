@@ -1,19 +1,26 @@
-import {IsDate, IsNotEmpty, IsNumber, IsString, IsUrl} from 'class-validator';
+import { IsNumber, IsNotEmpty, IsDate, Min, Max, IsString } from 'class-validator';
+
 export class FotoDto {
 
-    @IsNumber()
     @IsNotEmpty()
+    @IsNumber()
+    @Min(100)
+    @Max(6400)
     readonly ISO: number;
 
-    @IsNumber()
     @IsNotEmpty()
+    @IsNumber()
+    @Min(2)
+    @Max(250)
     readonly velObturacion: number;
 
-    @IsNumber()
     @IsNotEmpty()
+    @IsNumber()
+    @Min(1)
+    @Max(32)
     readonly apertura: number;
 
-    @IsString()
     @IsNotEmpty()
+    @IsString()
     readonly fecha: string;
 }

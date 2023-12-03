@@ -23,8 +23,8 @@ export class AlbumController {
     }
 
     @Put(':albumId/photos/:fotoId')
-    async addPhotoToAlbum(@Param('albumId') albumId: string, @Param('foto') foto: FotoEntity): Promise<AlbumEntity> {
-        return await this.albumService.addPhotoToAlbum(albumId, foto);
+    async addPhotoToAlbum(@Param('albumId') albumId: string, @Param('fotoId') fotoId: string): Promise<AlbumEntity> {
+        return await this.albumService.addPhotoToAlbum(albumId, fotoId);
     }
 
     @Delete(':AlbumId')

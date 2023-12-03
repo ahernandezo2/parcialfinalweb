@@ -10,7 +10,9 @@ import { BusinessError, BusinessLogicException } from '../shared/errors/business
 export class AlbumService {
     constructor(
         @InjectRepository(AlbumEntity)
-        private readonly albumRepository: Repository<AlbumEntity>
+        private readonly albumRepository: Repository<AlbumEntity>,
+        @InjectRepository(FotoEntity)
+        private readonly fotoRepository: Repository<FotoEntity>,
     ) { }
 
     async create(album: AlbumEntity): Promise<AlbumEntity> {
@@ -29,17 +31,21 @@ export class AlbumService {
         return album;
     }
 
-    async addPhotoToAlbum(albumId: string, foto: FotoEntity): Promise<AlbumEntity> {
-        const album: AlbumEntity = await this.albumRepository.findOne({ where: { id: albumId }, relations: ["fotos"] });
+    async addPhotoToAlbum(albumId: string, fotoId: string): Promise<AlbumEntity> {
+        const album = await this.albumRepository.findOne({ where: { id: albumId }, relations: ['fotos'] });
         if (!album) {
-            throw new BusinessLogicException("The album with the given id was not found", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException('El álbum no existe', BusinessError.NOT_FOUND);
         }
 
-        album.fotos.push(foto);
+        const foto = await this.fotoRepository.findOne({ where: { id: fotoId } });
+        if (!foto) {
+            throw new BusinessLogicException('La foto no existe', BusinessError.NOT_FOUND);
+        }
 
-        await this.albumRepository.save(album);
+        foto.album = album;
+        await this.fotoRepository.save(foto);
 
-        return album;
+        return this.albumRepository.findOne({ where: { id: albumId }, relations: ['fotos'] });
     }
 
     async deleteAlbum(id: string): Promise<void> {

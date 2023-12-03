@@ -9,24 +9,17 @@ export class RedsocialService {
     constructor(
         @InjectRepository(RedsocialEntity)
         private readonly redSocialRepository: Repository<RedsocialEntity>
-    ) {}
+    ) { }
 
     async createLibreria(redSocial: RedsocialEntity): Promise<RedsocialEntity> {
-        try {
-            // Verificar que el slogan no esté vacío
-            if (!redSocial.slogan || redSocial.slogan.trim() === '') {
-                throw new BusinessLogicException('El slogan no puede estar vacío.', BusinessError.BAD_REQUEST);
-            }
-
-            // Verificar que el slogan tenga al menos 20 caracteres
-            if (redSocial.slogan.length < 20) {
-                throw new BusinessLogicException('El slogan debe tener al menos 20 caracteres.', BusinessError.PRECONDITION_FAILED);
-            }
-
-            // Si pasa las validaciones, guardar la red social en la base de datos
-            return await this.redSocialRepository.save(redSocial);
-        } catch (error) {
-            throw new BusinessLogicException('Error al crear la red social.', BusinessError.BAD_REQUEST);
+        if (!redSocial.slogan) {
+            throw new Error('El slogan no debe estar vacio');
         }
+
+        else if (redSocial.slogan.length <= 10) {
+            throw new Error('El slogan debe tener mas de 10 caracteres');
+        }
+
+        return await this.redSocialRepository.save(redSocial);
     }
 }

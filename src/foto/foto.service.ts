@@ -9,32 +9,26 @@ export class FotoService {
     constructor(
         @InjectRepository(FotoEntity)
         private readonly fotoRepository: Repository<FotoEntity>
-    ) {}
+    ) { }
 
-    async createFoto(fotoData: Partial<FotoEntity>): Promise<FotoEntity> {
-        try {
-            // Validaciones
-            if (!(fotoData.ISO >= 100 && fotoData.ISO <= 6400) ||
-                !(fotoData.velObturacion >= 2 && fotoData.velObturacion <= 250) ||
-                !(fotoData.apertura >= 1 && fotoData.apertura <= 32)) {
-                throw new BusinessLogicException('Los valores de ISO, velocidad de obturación y apertura deben cumplir con los requisitos.', BusinessError.BAD_REQUEST);
-            }
-
-            // Verificar que al menos dos valores estén por encima del valor medio de sus cotas
-            const valoresPorEncima = [fotoData.ISO > 3250, fotoData.velObturacion > 126, fotoData.apertura > 16].filter(Boolean);
-
-            if (valoresPorEncima.length < 2) {
-                throw new BusinessLogicException('Al menos dos de los valores (ISO, velocidad de obturación, apertura) deben estar por encima del valor medio de sus cotas.', BusinessError.BAD_REQUEST);
-            }
-
-            // Crear la foto
-            const foto = this.fotoRepository.create(fotoData);
-
-            // Guardar la foto en la base de datos
-            return await this.fotoRepository.save(foto);
-        } catch (error) {
-            throw new BusinessLogicException('Error al crear la foto.', BusinessError.BAD_REQUEST);
+    async createFoto(foto: FotoEntity): Promise<FotoEntity> {
+        if (foto.ISO > 6400 || foto.ISO < 100) {
+            throw new Error('El valor ISO debe estar entre 100 y 6400.');
         }
+
+        if (foto.velObturacion > 250 || foto.velObturacion < 2) {
+            throw new Error('La velocidad de obturación debe estar entre 2 y 250.');
+        }
+
+        if (foto.apertura > 32 || foto.apertura < 1) {
+            throw new Error('La apertura debe estar entre 1 y 32.');
+        }
+
+        return await this.fotoRepository.save(foto);
+    }
+
+    async findAllFotos(): Promise<FotoEntity[]> {
+        return await this.fotoRepository.find({});
     }
 
     async findOne(id: string): Promise<FotoEntity> {
