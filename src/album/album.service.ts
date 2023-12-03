@@ -22,7 +22,7 @@ export class AlbumService {
     }
 
     async findOne(id: string): Promise<AlbumEntity> {
-        const album: AlbumEntity = await this.albumRepository.findOne({ where: { id }, relations: ["fotos", "usuarios"] });
+        const album: AlbumEntity = await this.albumRepository.findOne({ where: { id }, relations: ["fotos", "usuario"] });
         if (!album)
             throw new BusinessLogicException("The album with the given id was not found", BusinessError.NOT_FOUND);
 

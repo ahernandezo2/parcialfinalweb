@@ -2,7 +2,7 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { FotoEntity } from './foto.entity'; // Asegúrate de importar la entidad correcta
-import { BusinessError, BusinessLogicException } from 'src/shared/errors/business-errors';
+import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 
 @Injectable()
 export class FotoService {
@@ -38,7 +38,7 @@ export class FotoService {
     }
 
     async findOne(id: string): Promise<FotoEntity> {
-        const foto: FotoEntity = await this.fotoRepository.findOne({ where: { id }, relations: ["redsocial", "usuario", "foto"] });
+        const foto: FotoEntity = await this.fotoRepository.findOne({ where: { id }, relations: ["redsocial", "usuario", "album"] });
         if (!foto)
             throw new BusinessLogicException("The foto with the given id was not found", BusinessError.NOT_FOUND);
 
