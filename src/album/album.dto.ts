@@ -1,25 +1,20 @@
-/* eslint-disable prettier/prettier */
-import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import {IsDate, IsNotEmpty, IsString, IsUrl} from 'class-validator';
 export class AlbumDto {
 
     @IsString()
     @IsNotEmpty()
-    readonly name: string;
+    readonly id: string;
 
     @IsString()
     @IsNotEmpty()
-    readonly description: string;
-
+    readonly titulo: string;
+    
     @IsString()
     @IsNotEmpty()
-    readonly address: string;
-
+    readonly fechaFin: string;
+    
     @IsString()
     @IsNotEmpty()
-    readonly city: string;
-
-    @IsUrl()
-    @IsNotEmpty()
-    readonly image: string;
+    readonly fechaInicio: string;
+    
 }
-/* archivo: src/museum/museum.dto.ts */
