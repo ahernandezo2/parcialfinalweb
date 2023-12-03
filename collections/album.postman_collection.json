@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "fecb037a-2e12-4fc4-9e4a-c0523e140027",
+		"name": "album",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23661048"
+	},
+	"item": [
+		{
+			"name": "createAlbum",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"museum_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"titulo\":\"titulo1\",\n    \"fechaInicio\":\"diauno\",\n    \"fechaFin\":\"diados\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"albums"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "createAlbum",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\":\"titulo1\",\n    \"fechaInicio\":\"diauno\",\n    \"fechaFin\":\"diados\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/albums",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"albums"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"titulo\": \"titulo1\",\n    \"fechaInicio\": \"diauno\",\n    \"fechaFin\": \"diados\",\n    \"id\": \"04f68c90-8308-4f1b-a5cb-89d1a4a62fbd\"\n}"
+				}
+			]
+		},
+		{
+			"name": "findById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/album/3610a38f-e2b4-47e9-9441-493de6938f0a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"album",
+						"3610a38f-e2b4-47e9-9441-493de6938f0a"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "findById",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/album/3610a38f-e2b4-47e9-9441-493de6938f0a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"album",
+								"3610a38f-e2b4-47e9-9441-493de6938f0a"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "addPhoto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"AlbumId\": \"e01ff7df-d21d-4b06-95fc-2d9867a3951c\",\n    \"foto\": {\n        \"ISO\": 400,\n        \"velObturacion\": 100,\n        \"apertura\": 20,\n        \"fecha\": \"2023-12-01T12:00:00Z\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/albums/284f8a9c-1bec-412e-b4ab-ab9a7055fe46/photos/d5c8ef99-d617-4eb1-ae85-3f7a81cefbdd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"albums",
+						"284f8a9c-1bec-412e-b4ab-ab9a7055fe46",
+						"photos",
+						"d5c8ef99-d617-4eb1-ae85-3f7a81cefbdd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAlbum",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/albums/e01ff7df-d21d-4b06-95fc-2d9867a3951c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"albums",
+						"e01ff7df-d21d-4b06-95fc-2d9867a3951c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

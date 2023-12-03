@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "89dbd74e-3227-4e8c-8266-8a78cadbee19",
+		"name": "usuario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23661048"
+	},
+	"item": [
+		{
+			"name": "createUsuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"alejandrooo\",\n  \"telefono\": \"3125579137\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuarios"
+					]
+				},
+				"description": "This request shows an example of generating mock user data in the request body. You can use this to populate some users for testing your API or application, or to ensure that your API accepts a range of inputs within certain parameters."
+			},
+			"response": [
+				{
+					"name": "createUsuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"alejandrooo\",\n  \"telefono\": \"3125579137\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"alejandrooo\",\n    \"telefono\": \"3125579137\",\n    \"id\": \"46365d69-bf71-4654-bdd0-d21f1fb8aae6\"\n}"
+				}
+			]
+		},
+		{
+			"name": "findById",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Use a dynamic variable in script",
+							"// https://learning.postman.com/docs/writing-scripts/script-references/variables-list/",
+							"const loremParagraphs = pm.variables.replaceIn(\"{{$randomLoremParagraphs}}\");",
+							"",
+							"// $randomLoremParagraphs generates a string with multiple paragraphs separated by ",
+							"// newline control characters (\"\\n\"). Since we're using this in a JSON object, we ",
+							"// need to replace the newline control character with the JSON-safe string \"\\\\n\".",
+							"const blogPostContent = loremParagraphs.replace(/\\n/g, \"\\\\n\")",
+							"",
+							"// Make the result available as a variable for use in the request body",
+							"pm.variables.set('blogPostContent', blogPostContent)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuarios/cf229dbc-9dd3-4f98-b9f0-3fefb9bb761f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuarios",
+						"cf229dbc-9dd3-4f98-b9f0-3fefb9bb761f"
+					]
+				},
+				"description": "This request shows an example of generating longer-form content, in this case, a blog post, and transforming mock data as part of a pre-request script.\n\nIn the body, we use dynamic variables to generate a name, a short set of words as a title, a 'slug' (URL-safe textual identifier like \"dolores-est-iusto\"), and a post summary.\n\nIn the pre-request script, we generate some paragraphs of text using `pm.variables.replaceIn`. We then transform this text to make it JSON-safe by replacing newline characters with escaped newline characters and setting the result to a variable we can reference in the body."
+			},
+			"response": [
+				{
+					"name": "findById",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/usuarios/cf229dbc-9dd3-4f98-b9f0-3fefb9bb761f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"cf229dbc-9dd3-4f98-b9f0-3fefb9bb761f"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"46365d69-bf71-4654-bdd0-d21f1fb8aae6\",\n    \"nombre\": \"alejandrooo\",\n    \"telefono\": \"3125579137\",\n    \"fotos\": [],\n    \"redsocial\": null,\n    \"albums\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "findAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of fotos > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuarios"
+					]
+				},
+				"description": "This request shows an example of generating mock purchase details in the request body. It demonstrates a few finance-related dynamic variables, in addition to the ones for random ID, Integer, Boolean, and Timestamp."
+			},
+			"response": [
+				{
+					"name": "findAll",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"e3ec29df-f618-4246-a9a9-58be5624f402\",\n        \"nombre\": \"alejandrooo\",\n        \"telefono\": \"3125579137\",\n        \"fotos\": [],\n        \"redsocial\": null,\n        \"albums\": []\n    },\n    {\n        \"id\": \"46365d69-bf71-4654-bdd0-d21f1fb8aae6\",\n        \"nombre\": \"alejandrooo\",\n        \"telefono\": \"3125579137\",\n        \"fotos\": [],\n        \"redsocial\": null,\n        \"albums\": []\n    }\n]"
+				}
+			]
+		}
+	]
+}
